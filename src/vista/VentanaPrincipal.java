@@ -2,7 +2,6 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-/*import java.awt.Container;*/
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -14,18 +13,22 @@ public class VentanaPrincipal extends JFrame {
     JMenuBar barra=new JMenuBar();
     JMenu mnuArchivo=new JMenu("Archivo");
     JMenu mnuComprar=new JMenu("Comprar");
+    JMenu mnuTrabajador=new JMenu("Trabajadores");
     JMenuItem salir=new JMenuItem("Salir");
     JMenuItem ingresoCompra=new JMenuItem("Ingreso de Compra");
     JMenuItem ingresoDistribuidor=new JMenuItem("Ingreso de distribuidor");
     JMenuItem ingresoFactura=new JMenuItem("Ingreso de Factura");
+    JMenuItem IngresoTrabajador=new JMenuItem("Ingreso Trabajador");
     VentanaDistribuidor mDistribuidor=new VentanaDistribuidor();
     VentanaFactura mFactura=new VentanaFactura();
     VentanaCompra mCompra= new VentanaCompra();
+    VentanaTrabajador mTrabajador=new VentanaTrabajador();
     
     public VentanaPrincipal(){
-        barra.add(mnuArchivo);barra.add(mnuComprar);
+        barra.add(mnuArchivo);barra.add(mnuComprar);barra.add(mnuTrabajador);
         mnuArchivo.add(salir);
         mnuComprar.add(ingresoCompra);mnuComprar.add(ingresoDistribuidor);mnuComprar.add(ingresoFactura);
+        mnuTrabajador.add(IngresoTrabajador);
         this.setSize(600,400);
         this.setTitle("Sistema Biblioteca");
         this.add(barra,BorderLayout.NORTH);
@@ -34,6 +37,7 @@ public class VentanaPrincipal extends JFrame {
         this.add(panel1,BorderLayout.CENTER); 
         Container contenedor=getContentPane();
         contenedor.add(panel1);
+        //
         OyenteSalir out=new OyenteSalir();
         salir.addActionListener(out);
         OyenteDistribuidor distribuidor=new OyenteDistribuidor();
@@ -61,6 +65,11 @@ public class VentanaPrincipal extends JFrame {
     class OyenteCompra implements ActionListener{
         public void actionPerformed(ActionEvent e) {
           mCompra.setVisible(true);
+        }        
+    }
+    class OyenteTrabajador implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            mTrabajador.setVisible(true);
         }
         
     }
