@@ -18,7 +18,7 @@ public class VentanaPrincipal extends JFrame {
     JMenuItem ingresoCompra=new JMenuItem("Ingreso de Compra");
     JMenuItem ingresoDistribuidor=new JMenuItem("Ingreso de distribuidor");
     JMenuItem ingresoFactura=new JMenuItem("Ingreso de Factura");
-    JMenuItem IngresoTrabajador=new JMenuItem("Ingreso Trabajador");
+    JMenuItem ingresoTrabajador=new JMenuItem("Ingreso Trabajador");
     VentanaDistribuidor mDistribuidor=new VentanaDistribuidor();
     VentanaFactura mFactura=new VentanaFactura();
     VentanaCompra mCompra= new VentanaCompra();
@@ -28,7 +28,7 @@ public class VentanaPrincipal extends JFrame {
         barra.add(mnuArchivo);barra.add(mnuComprar);barra.add(mnuTrabajador);
         mnuArchivo.add(salir);
         mnuComprar.add(ingresoCompra);mnuComprar.add(ingresoDistribuidor);mnuComprar.add(ingresoFactura);
-        mnuTrabajador.add(IngresoTrabajador);
+        mnuTrabajador.add(ingresoTrabajador);
         this.setSize(600,400);
         this.setTitle("Sistema Biblioteca");
         this.add(barra,BorderLayout.NORTH);
@@ -46,6 +46,8 @@ public class VentanaPrincipal extends JFrame {
         ingresoFactura.addActionListener(factura);
         OyenteCompra compra=new OyenteCompra();
         ingresoCompra.addActionListener(compra);
+        OyenteTrabajador trabajador=new OyenteTrabajador();
+        ingresoTrabajador.addActionListener(trabajador);
     }
     class OyenteSalir implements ActionListener{        
         public void actionPerformed(ActionEvent e) {
