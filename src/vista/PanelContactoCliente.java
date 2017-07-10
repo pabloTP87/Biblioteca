@@ -1,6 +1,6 @@
 package vista;
 
-import Combo.CmbTrabajador;
+import Combo.CmbCliente;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,25 +15,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import negocio.ContactoTrabajador;
-import negocio.Trabajador;
+import negocio.Cliente;
+import negocio.ContactoCliente;
 
 /**
  *
  * @author Pablo
  */
-public class PanelContactoTrabajador extends JPanel{
+public class PanelContactoCliente extends JPanel{
     JPanel pnlElementos=new JPanel();
     JPanel pnlBotones=new JPanel();
     JPanel pnlSuperior=new JPanel();
     
     JLabel lblId=new JLabel("ID:");
-    JLabel lblId_trabajador=new JLabel("Seleccione Rut del Trabajador:");
+    JLabel lblId_cliente=new JLabel("Seleccione Rut del Trabajador:");
     JLabel lblDireccion=new JLabel("Direccion:");
     JLabel lblTelefono=new JLabel("Telefono:");
     JLabel lblCorreo=new JLabel("Correo:");
       
-    JComboBox cmbId_trabajador=new JComboBox();
+    JComboBox cmbId_cliente=new JComboBox();
     JTextField txtId=new JTextField();
     JTextField txtDireccion=new JTextField();
     JTextField txtTelefono=new JTextField();
@@ -44,8 +44,8 @@ public class PanelContactoTrabajador extends JPanel{
     JButton btnEliminar=new JButton("Eliminar");
     JButton btnActualizar=new JButton("Actualizar");
     
-    ContactoTrabajador contactoTrabajador=new ContactoTrabajador();
-    Trabajador trabajador=new Trabajador();
+    ContactoCliente contactoCliente=new ContactoCliente();
+    Cliente cliente=new Cliente();
     
     DefaultComboBoxModel value= new DefaultComboBoxModel();
     DefaultTableModel modelo=new DefaultTableModel();
@@ -60,14 +60,14 @@ public class PanelContactoTrabajador extends JPanel{
     JTable tabla=new JTable(modelo);
     JScrollPane scroll=new JScrollPane(tabla);
     
-    public PanelContactoTrabajador(){
+    public PanelContactoCliente(){
         txtId.setEditable(false);
         pnlElementos.setLayout(new GridLayout(5,2));
         pnlBotones.setLayout(new GridLayout(4,1));
         pnlSuperior.setLayout(new GridLayout(1,2));
         //elementos en panel
         pnlElementos.add(lblId);pnlElementos.add(txtId);
-        pnlElementos.add(lblId_trabajador);pnlElementos.add(cmbId_trabajador);      
+        pnlElementos.add(lblId_cliente);pnlElementos.add(cmbId_cliente);      
         pnlElementos.add(lblDireccion);pnlElementos.add(txtDireccion);
         pnlElementos.add(lblTelefono);pnlElementos.add(txtTelefono);
         pnlElementos.add(lblCorreo);pnlElementos.add(txtCorreo);
@@ -97,31 +97,31 @@ public class PanelContactoTrabajador extends JPanel{
                 int row=tabla.getSelectedRow();
                 System.out.println("Tabla Presionada"+tabla.getValueAt(row, 0));
                 txtId.setText(""+tabla.getValueAt(row, 0));
-                cmbId_trabajador.setSelectedItem(""+tabla.getValueAt(row, 1));
-                cmbId_trabajador.setSelectedItem(""+tabla.getValueAt(row, 2));
+                cmbId_cliente.setSelectedItem(""+tabla.getValueAt(row, 1));
+                cmbId_cliente.setSelectedItem(""+tabla.getValueAt(row, 2));
                 txtDireccion.setText(""+tabla.getValueAt(row, 3));
                 txtTelefono.setText(""+tabla.getValueAt(row, 4));
                 txtCorreo.setText(""+tabla.getValueAt(row, 5));
-                contactoTrabajador.setId_trabajador((String)tabla.getValueAt(row, 0));
+                contactoCliente.setId_cliente((String)tabla.getValueAt(row, 0));
             }
         });
     }
     
     class OyenteGuardar implements ActionListener{
         public void actionPerformed(ActionEvent e) {            
-            contactoTrabajador.setDireccion(txtDireccion.getText());
-            contactoTrabajador.setTelefono(txtTelefono.getText());
-            contactoTrabajador.setCorreo(txtCorreo.getText());
-            CmbTrabajador CmbTrabajador=(CmbTrabajador)cmbId_trabajador.getSelectedItem();
-            contactoTrabajador.setId_trabajador(CmbTrabajador.getIdTrabajador());
-            contactoTrabajador.guardar();
+            contactoCliente.setDireccion(txtDireccion.getText());
+            contactoCliente.setTelefono(txtTelefono.getText());
+            contactoCliente.setCorreo(txtCorreo.getText());
+            CmbCliente CmbCliente=(CmbCliente)cmbId_cliente.getSelectedItem();
+            contactoCliente.setId_cliente(CmbCliente.getIdCliente());
+            contactoCliente.guardar();
             limpiar();
             llenarTabla();
         }        
     }
     class OyenteEliminar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            contactoTrabajador.eliminar();
+            contactoCliente.eliminar();
             limpiar();
             llenarTabla();
         }   
@@ -134,14 +134,14 @@ public class PanelContactoTrabajador extends JPanel{
     }
     class OyenteActualizar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            contactoTrabajador.setId_contacto(txtId.getText());           
-            contactoTrabajador.setDireccion(txtDireccion.getText());
-            contactoTrabajador.setTelefono(txtTelefono.getText());
-            contactoTrabajador.setCorreo(txtCorreo.getText());
+            contactoCliente.setId_contacto(txtId.getText());           
+            contactoCliente.setDireccion(txtDireccion.getText());
+            contactoCliente.setTelefono(txtTelefono.getText());
+            contactoCliente.setCorreo(txtCorreo.getText());
             //Actualizar con datos del combobox
-            CmbTrabajador CmbTrabajador=(CmbTrabajador)cmbId_trabajador.getSelectedItem();
-            contactoTrabajador.setId_trabajador(CmbTrabajador.getIdTrabajador());
-            contactoTrabajador.actualizar();
+            CmbCliente CmbTrabajador=(CmbCliente)cmbId_cliente.getSelectedItem();
+            contactoCliente.setId_cliente(CmbTrabajador.getIdCliente());
+            contactoCliente.actualizar();
             limpiar();
             llenarTabla();
         }       
@@ -150,15 +150,15 @@ public class PanelContactoTrabajador extends JPanel{
     public void llenarTabla(){
         modelo.setNumRows(0);
         Object[] elementos=new Object[6];
-        contactoTrabajador.show();
+        contactoCliente.show();
         try{
-            while(contactoTrabajador.getShow().next()){
-                elementos[0]=contactoTrabajador.getShow().getString("id_contacto");
-                elementos[1]=contactoTrabajador.getShow().getString("nombre_trabajador");
-                elementos[2]=contactoTrabajador.getShow().getString("ap_paterno");
-                elementos[3]=contactoTrabajador.getShow().getString("direccion");
-                elementos[4]=contactoTrabajador.getShow().getString("telefono");
-                elementos[5]=contactoTrabajador.getShow().getString("correo");
+            while(contactoCliente.getShow().next()){
+                elementos[0]=contactoCliente.getShow().getString("id_contacto");
+                elementos[1]=contactoCliente.getShow().getString("nombre_cliente");
+                elementos[2]=contactoCliente.getShow().getString("ap_paterno");
+                elementos[3]=contactoCliente.getShow().getString("direccion");
+                elementos[4]=contactoCliente.getShow().getString("telefono");
+                elementos[5]=contactoCliente.getShow().getString("correo");
                 modelo.addRow(elementos);
             }
         }
@@ -176,10 +176,10 @@ public class PanelContactoTrabajador extends JPanel{
 
     public void llenarCombo(){
        try{
-          trabajador.showTrabajador();
-          cmbId_trabajador.setModel(value);
-          while(trabajador.getShowTrabajador().next()){
-              value.addElement(new CmbTrabajador(trabajador.getShowTrabajador().getString("rut_trabajador"),trabajador.getShowTrabajador().getString("id_trabajador")));
+          cliente.showCliente();
+          cmbId_cliente.setModel(value);
+          while(cliente.getShowCliente().next()){
+              value.addElement(new CmbCliente(cliente.getShowCliente().getString("rut"),cliente.getShowCliente().getString("id_cliente")));
           }
         }
        catch(SQLException ex){

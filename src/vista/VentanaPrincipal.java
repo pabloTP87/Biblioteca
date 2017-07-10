@@ -12,24 +12,38 @@ import javax.swing.JMenuItem;
 public class VentanaPrincipal extends JFrame {
     JMenuBar barra=new JMenuBar();
     JMenu mnuArchivo=new JMenu("Archivo");
-    JMenu mnuComprar=new JMenu("Comprar");
-    JMenu mnuTrabajador=new JMenu("Trabajadores");
+    JMenu mnuCompra=new JMenu("Compra");
+    JMenu mnuPersonas=new JMenu("Personas");
+    JMenu mnuVenta=new JMenu("Venta");
+    JMenu mnuArriendo=new JMenu("Arriendo");
+    JMenu mnuInventario=new JMenu("Inventario");
     JMenuItem salir=new JMenuItem("Salir");
     JMenuItem ingresoCompra=new JMenuItem("Ingreso de Compra");
     JMenuItem ingresoDistribuidor=new JMenuItem("Ingreso de distribuidor");
     JMenuItem ingresoFactura=new JMenuItem("Ingreso de Factura");
-    JMenuItem ingresoTrabajador=new JMenuItem("Ingreso Trabajador");
+    JMenuItem ingresoTrabajador=new JMenuItem("Ingreso de Trabajador");
+    JMenuItem ingresoCliente=new JMenuItem("Ingreso de Cliente");
+    
+    JMenuItem ingresoBoleta=new JMenuItem("Ingreso de Boleta");
+    JMenuItem ingresoVenta=new JMenuItem("Ingreso de Venta");
+    JMenuItem ingresoArriendo=new JMenuItem("Ingreso de Arriendo");
+    JMenuItem ingresoEditorial=new JMenuItem("Editoriales");
     VentanaDistribuidor mDistribuidor=new VentanaDistribuidor();
     VentanaFactura mFactura=new VentanaFactura();
     VentanaCompra mCompra= new VentanaCompra();
     VentanaTrabajador mTrabajador=new VentanaTrabajador();
+    VentanaCliente mCliente=new VentanaCliente();
+    VentanaBoleta mBoleta=new VentanaBoleta();
     
     public VentanaPrincipal(){
-        barra.add(mnuArchivo);barra.add(mnuComprar);barra.add(mnuTrabajador);
+        barra.add(mnuArchivo);barra.add(mnuCompra);barra.add(mnuPersonas);barra.add(mnuVenta);barra.add(mnuArriendo);barra.add(mnuInventario);
         mnuArchivo.add(salir);
-        mnuComprar.add(ingresoCompra);mnuComprar.add(ingresoDistribuidor);mnuComprar.add(ingresoFactura);
-        mnuTrabajador.add(ingresoTrabajador);
-        this.setSize(600,400);
+        mnuCompra.add(ingresoCompra);mnuCompra.add(ingresoDistribuidor);mnuCompra.add(ingresoFactura);
+        mnuPersonas.add(ingresoTrabajador);mnuPersonas.add(ingresoCliente);
+        mnuVenta.add(ingresoBoleta);mnuVenta.add(ingresoVenta);
+        mnuArriendo.add(ingresoArriendo);
+        mnuInventario.add(ingresoEditorial);
+        this.setSize(800,600);
         this.setTitle("Sistema Biblioteca");
         this.add(barra,BorderLayout.NORTH);
         this.setLocationRelativeTo(null);
@@ -48,6 +62,10 @@ public class VentanaPrincipal extends JFrame {
         ingresoCompra.addActionListener(compra);
         OyenteTrabajador trabajador=new OyenteTrabajador();
         ingresoTrabajador.addActionListener(trabajador);
+        OyenteCliente cliente=new OyenteCliente();
+        ingresoCliente.addActionListener(cliente);
+        OyenteBoleta boleta=new OyenteBoleta();
+        ingresoBoleta.addActionListener(boleta);
     }
     class OyenteSalir implements ActionListener{        
         public void actionPerformed(ActionEvent e) {
@@ -72,6 +90,16 @@ public class VentanaPrincipal extends JFrame {
     class OyenteTrabajador implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             mTrabajador.setVisible(true);
+        }       
+    }
+    class OyenteCliente implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            mCliente.setVisible(true);
+        }    
+    }
+    class OyenteBoleta implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            mBoleta.setVisible(true);
         }
         
     }

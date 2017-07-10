@@ -45,6 +45,7 @@ public class PanelCompra extends JPanel{
     Factura factura=new Factura();
     Distribuidor distribuidor=new Distribuidor();
     Compra compra=new Compra();
+    
     DefaultComboBoxModel value=new DefaultComboBoxModel();
     DefaultComboBoxModel valueFactura=new DefaultComboBoxModel();
     DefaultTableModel modelo=new DefaultTableModel();
@@ -103,7 +104,7 @@ public class PanelCompra extends JPanel{
                 cmbFactura.setSelectedItem(""+tabla.getValueAt(row, 4));
                 compra.setId_compra((String) tabla.getValueAt(row, 0));
             }
-});
+        });
     }
         
     class OyenteGuardar implements ActionListener{
