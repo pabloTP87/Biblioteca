@@ -114,7 +114,7 @@ public class Boleta {
         con.setExecuteUpdate("delete from boletas where id_boleta='"+this.getId_boleta()+"'");
     }
     public void actualizar(){
-        con.setExecuteUpdate("update boletas set folio_boleta='"+this.getFolio_boleta()+"',precio_neto='"+this.getPrecio_neto()+"',precio_iva='"+this.getPrecio_iva()+"',costo_iva='"+this.getCosto_iva()+"',fecha_boleta='"+this.getFecha_venta()+"',hora_boleta='"+this.getHora_venta()+"',id_cliente='"+this.getId_cliente()+"','"+this.getId_trabajador()+"',metodo_pago='"+this.getMetodo_pago()+"' where id_boleta='"+this.getId_boleta()+"'");
+        con.setExecuteUpdate("update boletas set folio_boleta='"+this.getFolio_boleta()+"',precio_neto='"+this.getPrecio_neto()+"',precio_iva='"+this.getPrecio_iva()+"',costo_iva='"+this.getCosto_iva()+"',fecha_venta='"+this.getFecha_venta()+"',hora_venta='"+this.getHora_venta()+"',id_cliente='"+this.getId_cliente()+"',id_trabajador='"+this.getId_trabajador()+"',metodo_pago='"+this.getMetodo_pago()+"' where id_boleta='"+this.getId_boleta()+"'");
     }
     public void show(){
         con.setExecuteQuery("select * from boletas,clientes,trabajadores where boletas.id_cliente=clientes.id_cliente and boletas.id_trabajador=trabajadores.id_trabajador");
