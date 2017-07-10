@@ -77,4 +77,10 @@ public class Trabajador {
     public ResultSet getShow(){
         return con.getRs();
     }
+    public void showTrabajador(){
+        con.setExecuteQuery("select id_trabajador,rut_trabajador from trabajadores");
+    }
+    public ResultSet getShowTrabajador(){
+        return con.getRs();
+    }
 }

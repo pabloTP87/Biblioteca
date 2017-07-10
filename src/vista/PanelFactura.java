@@ -42,12 +42,15 @@ public class PanelFactura extends JPanel{
     JTextField txtHora=new JTextField();
     JTextField txtMetodo=new JTextField();
     JComboBox cmbDistribuidor=new JComboBox();
+    
     JButton btnLimpiar=new JButton("Limpiar");
     JButton btnGuardar=new JButton("Guardar");
     JButton btnEliminar=new JButton("Eliminar");
     JButton btnActualizar=new JButton("Actualizar");
+    
     Factura factura=new Factura();
     Distribuidor distribuidor=new Distribuidor();
+    
     DefaultComboBoxModel value=new DefaultComboBoxModel();
     DefaultTableModel modelo=new DefaultTableModel();
         {
@@ -203,7 +206,7 @@ public class PanelFactura extends JPanel{
          cmbDistribuidor.setModel(value);
          while(distribuidor.getShowDistribuidor().next()){
              value.addElement(new CmbDistribuidor(distribuidor.getShowDistribuidor().getString("nombre_empresa"),distribuidor.getShowDistribuidor().getString("id_distribuidor")));
-         }
+            }
         }
         catch(SQLException ex){
              System.out.println("Error al llenar la tabla!");

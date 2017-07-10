@@ -179,7 +179,7 @@ public class PanelCompra extends JPanel{
          cmbDist.setModel(value);
          while(distribuidor.getShowDistribuidor().next()){
              value.addElement(new CmbDistribuidor(distribuidor.getShowDistribuidor().getString("nombre_empresa"),distribuidor.getShowDistribuidor().getString("id_distribuidor")));
-         }
+            }
         }
         catch(SQLException ex){
              System.out.println("Ergdgror al llenar la tabla!");
@@ -190,11 +190,11 @@ public class PanelCompra extends JPanel{
          factura.showFactura();
          cmbFactura.setModel(valueFactura);
          while(factura.getShowFactura().next()){
-             valueFactura.addElement(new CmbFactura(factura.getShowFactura().getString("folio_factura"),factura.getShowFactura().getString("id_factura")));
-         }
+            valueFactura.addElement(new CmbFactura(factura.getShowFactura().getString("folio_factura"),factura.getShowFactura().getString("id_factura")));
+            }
         }
         catch(SQLException ex){
-             System.out.println("Ergdgror al llenar la tabla!");
+            System.out.println("Ergdgror al llenar la tabla!");
         }
     }
 }
