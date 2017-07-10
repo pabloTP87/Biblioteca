@@ -212,9 +212,9 @@ public class PanelBoleta extends JPanel{
                 elementos[5]=boleta.getShow().getString("fecha_venta");
                 elementos[6]=boleta.getShow().getString("hora_venta");
                 elementos[7]=boleta.getShow().getString("nombre_cliente");
-                elementos[8]=boleta.getShow().getString("ap_paterno");
+                elementos[8]=boleta.getShow().getString("apepat_cliente");
                 elementos[9]=boleta.getShow().getString("nombre_trabajador");
-                elementos[10]=boleta.getShow().getString("ap_paterno");
+                elementos[10]=boleta.getShow().getString("apepat_trabajador");
                 elementos[11]=boleta.getShow().getString("metodo_pago");              
                 modelo.addRow(elementos);
             }

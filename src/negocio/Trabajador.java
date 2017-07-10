@@ -63,13 +63,13 @@ public class Trabajador {
     }
     //SQL
     public void guardar(){
-        con.setExecuteUpdate("insert into trabajadores(rut_trabajador,nombre_trabajador,ap_paterno,ap_materno,fecha_contrato) values('"+this.getRut_trabajador()+"','"+this.getNombre_trabajador()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getFecha_contrato()+"')");
+        con.setExecuteUpdate("insert into trabajadores(rut_trabajador,nombre_trabajador,apepat_trabajador,apemat_trabajador,fecha_contrato) values('"+this.getRut_trabajador()+"','"+this.getNombre_trabajador()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getFecha_contrato()+"')");
     }
     public void eliminar(){
         con.setExecuteUpdate("delete from trabajadores where id_trabajador='"+this.getId_trabajador()+"'");
     }
     public void actualizar(){
-        con.setExecuteUpdate("update trabajadores set rut_trabajador='"+this.getRut_trabajador()+"',nombre_trabajador='"+this.getNombre_trabajador()+"',ap_paterno='"+this.getApepat()+"',ap_materno='"+this.getApemat()+"',fecha_contrato='"+this.getFecha_contrato()+"' where id_trabajador='"+this.getId_trabajador()+"'");
+        con.setExecuteUpdate("update trabajadores set rut_trabajador='"+this.getRut_trabajador()+"',nombre_trabajador='"+this.getNombre_trabajador()+"',apepat_trabajador='"+this.getApepat()+"',apemat_trabajador='"+this.getApemat()+"',fecha_contrato='"+this.getFecha_contrato()+"' where id_trabajador='"+this.getId_trabajador()+"'");
     }
     public void show(){
         con.setExecuteQuery("select * from trabajadores");

@@ -151,8 +151,8 @@ public class PanelCliente extends JPanel{
                 elementos[0]=trabajador.getShow().getString("id_cliente");
                 elementos[1]=trabajador.getShow().getString("rut");
                 elementos[2]=trabajador.getShow().getString("nombre_cliente");
-                elementos[3]=trabajador.getShow().getString("ap_paterno");
-                elementos[4]=trabajador.getShow().getString("ap_materno");
+                elementos[3]=trabajador.getShow().getString("apepat_cliente");
+                elementos[4]=trabajador.getShow().getString("apemat_cliente");
                 elementos[5]=trabajador.getShow().getString("fecha_nac");
                 modelo.addRow(elementos);
             }

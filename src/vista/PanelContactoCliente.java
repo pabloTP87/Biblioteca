@@ -155,7 +155,7 @@ public class PanelContactoCliente extends JPanel{
             while(contactoCliente.getShow().next()){
                 elementos[0]=contactoCliente.getShow().getString("id_contacto");
                 elementos[1]=contactoCliente.getShow().getString("nombre_cliente");
-                elementos[2]=contactoCliente.getShow().getString("ap_paterno");
+                elementos[2]=contactoCliente.getShow().getString("apepat_cliente");
                 elementos[3]=contactoCliente.getShow().getString("direccion");
                 elementos[4]=contactoCliente.getShow().getString("telefono");
                 elementos[5]=contactoCliente.getShow().getString("correo");

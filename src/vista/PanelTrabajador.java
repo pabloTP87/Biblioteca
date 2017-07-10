@@ -147,8 +147,8 @@ public class PanelTrabajador extends JPanel{
                 elementos[0]=trabajador.getShow().getString("id_trabajador");
                 elementos[1]=trabajador.getShow().getString("rut_trabajador");
                 elementos[2]=trabajador.getShow().getString("nombre_trabajador");
-                elementos[3]=trabajador.getShow().getString("ap_paterno");
-                elementos[4]=trabajador.getShow().getString("ap_materno");
+                elementos[3]=trabajador.getShow().getString("apepat_trabajador");
+                elementos[4]=trabajador.getShow().getString("apemat_trabajador");
                 elementos[5]=trabajador.getShow().getString("fecha_contrato");
                 modelo.addRow(elementos);
             }

@@ -71,13 +71,13 @@ public class Cliente {
     }
     //SQL
     public void guardar(){
-        con.setExecuteUpdate("insert into clientes(rut,nombre_cliente,ap_paterno,ap_materno,fecha_nac) values('"+this.getRut()+"','"+this.getNombre_cliente()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getFecha_nac()+"')");
+        con.setExecuteUpdate("insert into clientes(rut,nombre_cliente,apepat_cliente,apemat_cliente,fecha_nac) values('"+this.getRut()+"','"+this.getNombre_cliente()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getFecha_nac()+"')");
     }
     public void eliminar(){
         con.setExecuteUpdate("delete from clientes where id_cliente='"+this.getId_cliente()+"'");
     }
     public void actualizar(){
-        con.setExecuteUpdate("update clientes set rut='"+this.getRut()+"',nombre_cliente='"+this.getNombre_cliente()+"',ap_paterno='"+this.getApepat()+"',ap_materno='"+this.getApemat()+"',fecha_nac='"+this.getFecha_nac()+"' where id_cliente='"+this.getId_cliente()+"'");
+        con.setExecuteUpdate("update clientes set rut='"+this.getRut()+"',nombre_cliente='"+this.getNombre_cliente()+"',apepat_cliente='"+this.getApepat()+"',apemat_cliente='"+this.getApemat()+"',fecha_nac='"+this.getFecha_nac()+"' where id_cliente='"+this.getId_cliente()+"'");
     }
     public void show(){
         con.setExecuteQuery("select * from clientes");
