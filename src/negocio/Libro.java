@@ -1,4 +1,8 @@
 package negocio;
+
+import acceso.Conexion;
+import java.sql.ResultSet;
+
 public class Libro {
     private String id_libro;
     private String numSerie;
@@ -6,7 +10,109 @@ public class Libro {
     private String titulo;
     private String numPaginas;
     private String año;
+    private String precio;
     private String idEditorial;
-    private String idCompra;
-    private String estado;
+    private String idFactura;
+    private String idEstado;
+    Conexion con;
+    
+    public Libro(){
+        con=new Conexion();
+    }
+
+    public void setId_libro(String id_libro) {
+        this.id_libro = id_libro;
+    }
+
+    public void setNumSerie(String numSerie) {
+        this.numSerie = numSerie;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setNumPaginas(String numPaginas) {
+        this.numPaginas = numPaginas;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+    
+    public void setAño(String año) {
+        this.año = año;
+    }
+
+    public void setIdEditorial(String idEditorial) {
+        this.idEditorial = idEditorial;
+    }
+
+    public void setIdFactura(String idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public void setIdEstado(String idEstado) {
+        this.idEstado = idEstado;
+    }
+    //GET
+    public String getId_libro() {
+        return id_libro;
+    }
+
+    public String getNumSerie() {
+        return numSerie;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getNumPaginas() {
+        return numPaginas;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+    
+    public String getAño() {
+        return año;
+    }
+
+    public String getIdEditorial() {
+        return idEditorial;
+    }
+
+    public String getIdFactura() {
+        return idFactura;
+    }
+
+    public String getIdEstado() {
+        return idEstado;
+    }
+    //SQL
+        public void guardar(){
+        con.setExecuteUpdate("insert into libros (numero_serie,isbn,titulo,numero_paginas,precio,año_publicacion,id_editorial,id_compra,id_factura) values('"+this.getNumSerie()+"','"+this.getIsbn()+"','"+this.getTitulo()+"','"+this.getNumPaginas()+"','"+this.getPrecio()+"','"+this.getAño()+"','"+this.getIdEditorial()+"','"+this.getIdFactura()+"','"+this.getIdEstado()+"')");
+    }
+    public void eliminar(){
+        con.setExecuteUpdate("delete from libros where id_libro='"+this.getId_libro()+"'");
+    }
+    public void actualizar(){
+        con.setExecuteUpdate("update trabajadores set rut_trabajador='"+this.getRut_trabajador()+"',nombre_trabajador='"+this.getNombre_trabajador()+"',apepat_trabajador='"+this.getApepat()+"',apemat_trabajador='"+this.getApemat()+"',fecha_contrato='"+this.getFecha_contrato()+"' where id_trabajador='"+this.getId_trabajador()+"'");
+    }
+    public void show(){
+        con.setExecuteQuery("select * from libros");
+    }
+    public ResultSet getShow(){
+        return con.getRs();
+    }
 }
