@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import negocio.Distribuidor;
+
 public class PanelDistribuidor extends JPanel{
     JPanel pnlElementos=new JPanel();
     JPanel pnlBotones=new JPanel();

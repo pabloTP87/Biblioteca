@@ -17,23 +17,26 @@ public class VentanaPrincipal extends JFrame {
     JMenu mnuVenta=new JMenu("Venta");
     JMenu mnuArriendo=new JMenu("Arriendo");
     JMenu mnuInventario=new JMenu("Inventario");
+    
     JMenuItem salir=new JMenuItem("Salir");
     JMenuItem ingresoCompra=new JMenuItem("Ingreso de Compra");
     JMenuItem ingresoDistribuidor=new JMenuItem("Ingreso de distribuidor");
     JMenuItem ingresoFactura=new JMenuItem("Ingreso de Factura");
     JMenuItem ingresoTrabajador=new JMenuItem("Ingreso de Trabajador");
-    JMenuItem ingresoCliente=new JMenuItem("Ingreso de Cliente");
-    
+    JMenuItem ingresoCliente=new JMenuItem("Ingreso de Cliente");   
     JMenuItem ingresoBoleta=new JMenuItem("Ingreso de Boleta");
     JMenuItem ingresoVenta=new JMenuItem("Ingreso de Venta");
     JMenuItem ingresoArriendo=new JMenuItem("Ingreso de Arriendo");
     JMenuItem ingresoEditorial=new JMenuItem("Editoriales");
+    JMenuItem ingresoInventario=new JMenuItem("Inventario de libros");
+    
     VentanaDistribuidor mDistribuidor=new VentanaDistribuidor();
     VentanaFactura mFactura=new VentanaFactura();
     VentanaCompra mCompra= new VentanaCompra();
     VentanaTrabajador mTrabajador=new VentanaTrabajador();
     VentanaCliente mCliente=new VentanaCliente();
     VentanaBoleta mBoleta=new VentanaBoleta();
+    VentanaLibro mLibro=new VentanaLibro();
     
     public VentanaPrincipal(){
         barra.add(mnuArchivo);barra.add(mnuCompra);barra.add(mnuPersonas);barra.add(mnuVenta);barra.add(mnuArriendo);barra.add(mnuInventario);
@@ -42,7 +45,7 @@ public class VentanaPrincipal extends JFrame {
         mnuPersonas.add(ingresoTrabajador);mnuPersonas.add(ingresoCliente);
         mnuVenta.add(ingresoBoleta);mnuVenta.add(ingresoVenta);
         mnuArriendo.add(ingresoArriendo);
-        mnuInventario.add(ingresoEditorial);
+        mnuInventario.add(ingresoEditorial);mnuInventario.add(ingresoInventario);
         this.setSize(800,600);
         this.setTitle("Sistema Biblioteca");
         this.add(barra,BorderLayout.NORTH);
@@ -66,6 +69,8 @@ public class VentanaPrincipal extends JFrame {
         ingresoCliente.addActionListener(cliente);
         OyenteBoleta boleta=new OyenteBoleta();
         ingresoBoleta.addActionListener(boleta);
+        OyenteLibro libro= new OyenteLibro();
+        ingresoInventario.addActionListener(libro);
     }
     class OyenteSalir implements ActionListener{        
         public void actionPerformed(ActionEvent e) {
@@ -100,7 +105,11 @@ public class VentanaPrincipal extends JFrame {
     class OyenteBoleta implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             mBoleta.setVisible(true);
-        }
-        
+        }        
+    }
+    class OyenteLibro implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            mLibro.setVisible(true);
+        }        
     }
 }

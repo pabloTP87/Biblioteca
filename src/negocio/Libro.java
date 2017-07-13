@@ -107,7 +107,7 @@ public class Libro {
         con.setExecuteUpdate("delete from libros where id_libro='"+this.getId_libro()+"'");
     }
     public void actualizar(){
-        con.setExecuteUpdate("update trabajadores set rut_trabajador='"+this.getRut_trabajador()+"',nombre_trabajador='"+this.getNombre_trabajador()+"',apepat_trabajador='"+this.getApepat()+"',apemat_trabajador='"+this.getApemat()+"',fecha_contrato='"+this.getFecha_contrato()+"' where id_trabajador='"+this.getId_trabajador()+"'");
+        con.setExecuteUpdate("update libros set numero_serie='"+this.getNumSerie()+"',isbn='"+this.getIsbn()+"',titulo='"+this.getTitulo()+"',numero_paginas='"+this.getNumPaginas()+"',precio='"+this.getPrecio()+"',año_publicacion='"+this.getAño()+"',id_editorial='"+this.getIdEditorial()+"',id_factura='"+this.getIdFactura()+"',id_estado='"+this.getIdEstado()+"' where id_libro='"+this.getId_libro()+"'");
     }
     public void show(){
         con.setExecuteQuery("select * from libros");
