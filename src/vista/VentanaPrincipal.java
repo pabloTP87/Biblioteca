@@ -39,6 +39,7 @@ public class VentanaPrincipal extends JFrame {
     VentanaLibro mLibro=new VentanaLibro();
     VentanaEditorial mEditorial=new VentanaEditorial();
     VentanaVenta mVenta=new VentanaVenta();
+    VentanaArriendo mArriendo=new VentanaArriendo();
     
     public VentanaPrincipal(){
         barra.add(mnuArchivo);barra.add(mnuCompra);barra.add(mnuPersonas);barra.add(mnuVenta);barra.add(mnuArriendo);barra.add(mnuInventario);
@@ -77,6 +78,8 @@ public class VentanaPrincipal extends JFrame {
         ingresoEditorial.addActionListener(editorial);
         OyenteVenta venta=new OyenteVenta();
         ingresoVenta.addActionListener(venta);
+        OyenteArriendo arriendo=new OyenteArriendo();
+        ingresoArriendo.addActionListener(arriendo);
     }
     class OyenteSalir implements ActionListener{        
         public void actionPerformed(ActionEvent e) {
@@ -126,6 +129,11 @@ public class VentanaPrincipal extends JFrame {
     class OyenteVenta implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             mVenta.setVisible(true);
+        }        
+    }
+    class OyenteArriendo implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            mArriendo.setVisible(true);
         }
         
     }
