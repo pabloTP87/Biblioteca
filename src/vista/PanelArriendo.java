@@ -1,6 +1,8 @@
 
 package vista;
 
+import Combo.CmbCliente;
+import Combo.CmbTrabajador;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -147,12 +149,13 @@ public class PanelArriendo extends JPanel{
     }
     class OyenteGuardar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-           arriendo.setFolio_boleta(txtFolio.getText());
-           arriendo.setPrecio_neto(boleta.getPrecio_neto());
-           arriendo.setPrecio_iva(Double.parseDouble(txtPrecioIva.getText()));
-           arriendo.setCosto_iva(boleta.getCosto_iva());
-           arriendo.setFecha_venta(txtFecha.getText());
-           arriendo.setHora_venta(txtHora.getText());
+           arriendo.setCosto_total(txtTotal.getText());
+           arriendo.setFecha_arriendo(txtArriendo.getText());
+           arriendo.setFecha_devolucion(txtDevolucion.getText());
+           arriendo.setFecha_entrega(txtEntrega.getText());
+           arriendo.setDias_atraso(txtAtraso.getText());
+           arriendo.setMulta(txtMulta.getText());
+           arriendo.setCosto_arriendo(txtCosto.getText());
            
            CmbCliente CmbCliente=(CmbCliente)cmbCliente.getSelectedItem();
            arriendo.setId_cliente(CmbCliente.getIdCliente());
@@ -178,13 +181,14 @@ public class PanelArriendo extends JPanel{
     }
     class OyenteActualizar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-           arriendo.setId_boleta(txtId.getText());
-           arriendo.setFolio_boleta(txtFolio.getText());
-           arriendo.setPrecio_neto(boleta.getPrecio_neto());
-           arriendo.setPrecio_iva(Double.parseDouble(txtPrecioIva.getText()));
-           arriendo.setCosto_iva(boleta.getCosto_iva());
-           arriendo.setFecha_venta(txtFecha.getText());
-           arriendo.setHora_venta(txtHora.getText());
+           arriendo.setId_arriendo(txtId.getText());
+           arriendo.setCosto_total(txtTotal.getText());
+           arriendo.setFecha_arriendo(txtArriendo.getText());
+           arriendo.setFecha_devolucion(txtDevolucion.getText());
+           arriendo.setFecha_entrega(txtEntrega.getText());
+           arriendo.setDias_atraso(txtAtraso.getText());
+           arriendo.setMulta(txtMulta.getText());
+           arriendo.setCosto_arriendo(txtCosto.getText());
            
            CmbCliente CmbCliente=(CmbCliente)cmbCliente.getSelectedItem();
            arriendo.setId_cliente(CmbCliente.getIdCliente());
@@ -223,13 +227,13 @@ public class PanelArriendo extends JPanel{
     }
     public void limpiar(){
         txtId.setText("");
-        txtFolio.setText("");
-        txtPrecioN.setText("");
-        txtPrecioIva.setText("");
-        txtIva.setText("");
-        txtFecha.setText(""); 
-        txtHora.setText("");
-        txtMetodo.setText(""); 
+        txtTotal.setText("");
+        txtArriendo.setText("");
+        txtDevolucion.setText("");
+        txtEntrega.setText("");
+        txtAtraso.setText(""); 
+        txtMulta.setText("");
+        txtCosto.setText(""); 
     }
     public void llenarComboCliente(){
        try{
