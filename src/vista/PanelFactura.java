@@ -24,9 +24,9 @@ public class PanelFactura extends JPanel{
     JPanel pnlSuperior=new JPanel();
     JLabel lblId=new JLabel("ID:");
     JLabel lblFolio=new JLabel("Folio:");
-    JLabel lblPrecioN=new JLabel("Precio Neto:");
+    //JLabel lblPrecioN=new JLabel("Precio Neto:");
     JLabel lblPrecioIva=new JLabel("Precio con IVA:");
-    JLabel lblIva=new JLabel("IVA (19%):");
+    //JLabel lblIva=new JLabel("IVA (19%):");
     JLabel lblFecha=new JLabel("Fecha de compra:");
     JLabel lblHora=new JLabel("Hora de compra:");
     JLabel lblMetodo=new JLabel("Metodo de pago:");
@@ -34,12 +34,16 @@ public class PanelFactura extends JPanel{
   
     JTextField txtId=new JTextField();
     JTextField txtFolio=new JTextField();
-    JTextField txtPrecioN=new JTextField();
+    //JTextField txtPrecioN=new JTextField();
     JTextField txtPrecioIva=new JTextField();
-    JTextField txtIva=new JTextField();
+    //JTextField txtIva=new JTextField();
     JTextField txtFecha=new JTextField();
     JTextField txtHora=new JTextField();
-    JTextField txtMetodo=new JTextField();
+    //JTextField txtMetodo=new JTextField();
+    
+    String[] metodoPago={"Efectivo","Cheque","Credito","Debito"};
+    JComboBox cmbMetodo=new JComboBox(metodoPago);
+    
     JComboBox cmbDistribuidor=new JComboBox();
     
     JButton btnLimpiar=new JButton("Limpiar");
@@ -57,7 +61,7 @@ public class PanelFactura extends JPanel{
             modelo.addColumn("Folio");
             modelo.addColumn("Precio Neto");
             modelo.addColumn("Precio con IVA");
-            modelo.addColumn("IVA");
+            modelo.addColumn("IVA 19%");
             modelo.addColumn("Fecha de compra");
             modelo.addColumn("Hora de compra");
             modelo.addColumn("Metodo de pago");
@@ -74,12 +78,12 @@ public class PanelFactura extends JPanel{
         //labels y cajas de texto
         pnlElementos.add(lblId);pnlElementos.add(txtId);
         pnlElementos.add(lblFolio);pnlElementos.add(txtFolio);      
-        pnlElementos.add(lblPrecioN);pnlElementos.add(txtPrecioN);
+        //pnlElementos.add(lblPrecioN);pnlElementos.add(txtPrecioN);
         pnlElementos.add(lblPrecioIva);pnlElementos.add(txtPrecioIva);
-        pnlElementos.add(lblIva);pnlElementos.add(txtIva);
+        //pnlElementos.add(lblIva);pnlElementos.add(txtIva);
         pnlElementos.add(lblFecha);pnlElementos.add(txtFecha);
         pnlElementos.add(lblHora);pnlElementos.add(txtHora);
-        pnlElementos.add(lblMetodo);pnlElementos.add(txtMetodo);
+        pnlElementos.add(lblMetodo);pnlElementos.add(cmbMetodo);
         pnlElementos.add(lblDistribuidor);pnlElementos.add(cmbDistribuidor);
         //botones
         pnlBotones.add(btnLimpiar);pnlBotones.add(btnGuardar);     
@@ -108,12 +112,12 @@ public class PanelFactura extends JPanel{
                 System.out.println("Tabla Presionada"+tabla.getValueAt(row, 0));
                 txtId.setText(""+tabla.getValueAt(row, 0));
                 txtFolio.setText(""+tabla.getValueAt(row, 1));
-                txtPrecioN.setText(""+tabla.getValueAt(row, 2));
+                //txtPrecioN.setText(""+tabla.getValueAt(row, 2));
                 txtPrecioIva.setText(""+tabla.getValueAt(row, 3));
-                txtIva.setText(""+tabla.getValueAt(row, 4));
+                //txtIva.setText(""+tabla.getValueAt(row, 4));
                 txtFecha.setText(""+tabla.getValueAt(row, 5));
                 txtHora.setText(""+tabla.getValueAt(row, 6));
-                txtMetodo.setText(""+tabla.getValueAt(row, 7));
+                cmbMetodo.setSelectedItem(""+tabla.getValueAt(row, 7));
                 cmbDistribuidor.setSelectedItem(""+tabla.getValueAt(row, 8));
                 factura.setId_factura((String) tabla.getValueAt(row, 0));
             }
@@ -123,12 +127,12 @@ public class PanelFactura extends JPanel{
     class OyenteGuardar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
            factura.setFolio_factura(txtFolio.getText());
-           factura.setPrecio_neto(txtPrecioN.getText());
-           factura.setPrecio_iva(txtPrecioIva.getText());
-           factura.setCosto_iva(txtIva.getText());
+           factura.setPrecio_neto(factura.getPrecio_neto());
+           factura.setPrecio_iva(Double.parseDouble(txtPrecioIva.getText()));
+           factura.setCosto_iva(factura.getCosto_iva());
            factura.setFecha_compra(txtFecha.getText());
            factura.setHora_compra(txtHora.getText());
-           factura.setMetodo_pago(txtMetodo.getText());
+           factura.setMetodo_pago(cmbMetodo.getSelectedItem().toString());
            CmbDistribuidor CmbDistribuidor=(CmbDistribuidor)cmbDistribuidor.getSelectedItem();
            factura.setId_distribuidor(CmbDistribuidor.getId());
            //factura.setId_distribuidor(cmbDistribuidor.getToolTipText()); 
@@ -153,12 +157,12 @@ public class PanelFactura extends JPanel{
         public void actionPerformed(ActionEvent e) {
            factura.setId_factura(txtId.getText());
            factura.setFolio_factura(txtFolio.getText());
-           factura.setPrecio_neto(txtPrecioN.getText());
-           factura.setPrecio_iva(txtPrecioIva.getText());
-           factura.setCosto_iva(txtIva.getText());
+           factura.setPrecio_neto(factura.getPrecio_neto());
+           factura.setPrecio_iva(Double.parseDouble(txtPrecioIva.getText()));
+           factura.setCosto_iva(factura.getCosto_iva());
            factura.setFecha_compra(txtFecha.getText());
            factura.setHora_compra(txtHora.getText());
-           factura.setMetodo_pago(txtMetodo.getText());
+           factura.setMetodo_pago(cmbMetodo.getSelectedItem().toString());
            CmbDistribuidor CmbDistribuidor=(CmbDistribuidor)cmbDistribuidor.getSelectedItem();
            factura.setId_distribuidor(CmbDistribuidor.getId());
            factura.actualizar();
@@ -191,12 +195,12 @@ public class PanelFactura extends JPanel{
     public void limpiar(){
         txtId.setText("");
         txtFolio.setText("");
-        txtPrecioN.setText("");
+        //txtPrecioN.setText("");
         txtPrecioIva.setText("");
-        txtIva.setText("");
+        //txtIva.setText("");
         txtFecha.setText(""); 
         txtHora.setText("");
-        txtMetodo.setText(""); 
+        //txtMetodo.setText(""); 
     }
 
     public void llenarCombo(){

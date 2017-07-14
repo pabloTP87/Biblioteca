@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 public class Factura {
     private String id_factura;
     private String folio_factura;
-    private String precio_neto;
-    private String precio_iva;
-    private String costo_iva;
+    private double precio_neto;
+    private double precio_iva;
+    private double costo_iva;
     private String fecha_compra;
     private String hora_compra;
     private String metodo_pago;
@@ -27,15 +27,15 @@ public class Factura {
         this.folio_factura = folio_factura;
     }
 
-    public void setPrecio_neto(String precio_neto) {
+    public void setPrecio_neto(double precio_neto) {
         this.precio_neto = precio_neto;
     }
 
-    public void setPrecio_iva(String precio_iva) {
+    public void setPrecio_iva(double precio_iva) {
         this.precio_iva = precio_iva;
     }
 
-    public void setCosto_iva(String costo_iva) {
+    public void setCosto_iva(double costo_iva) {
         this.costo_iva = costo_iva;
     }
 
@@ -63,15 +63,17 @@ public class Factura {
         return folio_factura;
     }
 
-    public String getPrecio_neto() {
+    public double getPrecio_neto() {
+        precio_neto=precio_iva-costo_iva;
         return precio_neto;
     }
 
-    public String getPrecio_iva() {
+    public double getPrecio_iva() {
         return precio_iva;
     }
 
-    public String getCosto_iva() {
+    public double getCosto_iva() {
+        costo_iva=precio_iva*0.19;
         return costo_iva;
     }
 
@@ -86,10 +88,11 @@ public class Factura {
     public String getMetodo_pago() {
         return metodo_pago;
     }
-   
+
     public String getId_distribuidor() {
         return id_distribuidor;
     }
+    
     
     public void guardar(){
         con.setExecuteUpdate("insert into facturas(folio_factura,precio_neto,precio_iva,costo_iva,fecha_compra,hora_compra,metodo_pago,id_distribuidor) values('"+this.getFolio_factura()+"','"+this.getPrecio_neto()+"','"+this.getPrecio_iva()+"','"+this.getCosto_iva()+"','"+this.getFecha_compra()+"','"+this.getHora_compra()+"','"+this.getMetodo_pago()+"','"+this.getId_distribuidor()+"')");
