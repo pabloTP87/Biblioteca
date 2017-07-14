@@ -122,4 +122,10 @@ public class Boleta {
     public ResultSet getShow(){
         return con.getRs();
     }
+    public void showBoleta(){
+        con.setExecuteQuery("select id_boleta,folio_boleta from boletas");
+    }
+    public ResultSet getShowBoleta(){
+        return con.getRs();
+    }
 }

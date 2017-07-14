@@ -69,7 +69,7 @@ public class Venta {
         con.setExecuteUpdate("update Ventas set id_libro='"+this.getId_libro()+"',id_cliente='"+this.getId_cliente()+"',id_trabajador='"+this.getId_trabajador()+"',id_boleta='"+this.getId_boleta()+"' where id_venta='"+this.getId_venta()+"'");
     }
     public void show(){
-        con.setExecuteQuery("select * from Ventas");
+        con.setExecuteQuery("select * from ventas,libros,clientes,trabajadores,boletas WHERE ventas.id_libro=libros.id_libro AND ventas.id_cliente=clientes.id_cliente and ventas.id_trabajador=trabajadores.id_trabajador and ventas.id_boleta=boletas.id_boleta");
     }
     public ResultSet getShow(){
         return con.getRs();

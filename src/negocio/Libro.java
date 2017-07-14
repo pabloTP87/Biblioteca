@@ -115,4 +115,10 @@ public class Libro {
     public ResultSet getShow(){
         return con.getRs();
     }
+    public void showLibro(){
+        con.setExecuteQuery("select id_libro,titulo from libros");
+    }
+    public ResultSet getShowLibro(){
+        return con.getRs();
+    }
 }
