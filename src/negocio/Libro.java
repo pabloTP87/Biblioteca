@@ -101,7 +101,7 @@ public class Libro {
     }
     //SQL
         public void guardar(){
-        con.setExecuteUpdate("insert into libros (numero_serie,isbn,titulo,numero_paginas,precio,año_publicacion,id_editorial,id_compra,id_factura) values('"+this.getNumSerie()+"','"+this.getIsbn()+"','"+this.getTitulo()+"','"+this.getNumPaginas()+"','"+this.getPrecio()+"','"+this.getAño()+"','"+this.getIdEditorial()+"','"+this.getIdFactura()+"','"+this.getIdEstado()+"')");
+        con.setExecuteUpdate("insert into libros (numero_serie,isbn,titulo,numero_paginas,precio,año_publicacion,id_editorial,id_factura,id_estado) values('"+this.getNumSerie()+"','"+this.getIsbn()+"','"+this.getTitulo()+"','"+this.getNumPaginas()+"','"+this.getPrecio()+"','"+this.getAño()+"','"+this.getIdEditorial()+"','"+this.getIdFactura()+"','"+this.getIdEstado()+"')");
     }
     public void eliminar(){
         con.setExecuteUpdate("delete from libros where id_libro='"+this.getId_libro()+"'");
@@ -110,7 +110,7 @@ public class Libro {
         con.setExecuteUpdate("update libros set numero_serie='"+this.getNumSerie()+"',isbn='"+this.getIsbn()+"',titulo='"+this.getTitulo()+"',numero_paginas='"+this.getNumPaginas()+"',precio='"+this.getPrecio()+"',año_publicacion='"+this.getAño()+"',id_editorial='"+this.getIdEditorial()+"',id_factura='"+this.getIdFactura()+"',id_estado='"+this.getIdEstado()+"' where id_libro='"+this.getId_libro()+"'");
     }
     public void show(){
-        con.setExecuteQuery("select * from libros");
+        con.setExecuteQuery("select * from libros,editoriales,facturas,estados where libros.id_editorial=editoriales.id_editorial and libros.id_factura=facturas.id_factura and libros.id_estado=estados.id_estado");
     }
     public ResultSet getShow(){
         return con.getRs();

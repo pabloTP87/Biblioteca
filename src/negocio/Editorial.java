@@ -43,4 +43,10 @@ public class Editorial {
     public ResultSet getShow(){
         return con.getRs();
     }
+    public void showEditorial(){
+        con.setExecuteQuery("select id_editorial,nombre_editorial from editoriales");
+    }
+    public ResultSet getShowEditorial(){
+        return con.getRs();
+    }
 }

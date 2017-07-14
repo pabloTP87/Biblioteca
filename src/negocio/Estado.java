@@ -43,4 +43,10 @@ public class Estado {
     public ResultSet getShow(){
         return con.getRs();
     }
+    public void showEstado(){
+        con.setExecuteQuery("select id_estado,estado from estados");
+    }
+    public ResultSet getShowEstado(){
+        return con.getRs();
+    }
 }

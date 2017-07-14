@@ -1,10 +1,14 @@
 package vista;
 
+import Combo.CmbEditorial;
+import Combo.CmbEstado;
+import Combo.CmbFactura;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,6 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import negocio.Editorial;
+import negocio.Estado;
+import negocio.Factura;
 import negocio.Libro;
 
 public class PanelLibro extends JPanel{
@@ -41,9 +48,7 @@ public class PanelLibro extends JPanel{
     
     JComboBox cmbEditorial=new JComboBox();
     JComboBox cmbFactura=new JComboBox();
-    
-    String estados[]={"Disponible","Arrendado","Vendido","Mal estado"};
-    JComboBox cmbEstado=new JComboBox(estados);
+    JComboBox cmbEstado=new JComboBox();
     
     JButton btnLimpiar=new JButton("Limpiar");
     JButton btnGuardar=new JButton("Guardar");
@@ -51,8 +56,13 @@ public class PanelLibro extends JPanel{
     JButton btnActualizar=new JButton("Actualizar");
     
     Libro libro=new Libro();
+    Factura factura=new Factura();
+    Editorial editorial=new Editorial();
+    Estado estado=new Estado();
        
-
+    DefaultComboBoxModel modFactura=new DefaultComboBoxModel();
+    DefaultComboBoxModel modEditorial=new DefaultComboBoxModel();
+    DefaultComboBoxModel modEstado=new DefaultComboBoxModel();
     DefaultTableModel modelo=new DefaultTableModel();
         {
             modelo.addColumn("Id");
@@ -104,6 +114,9 @@ public class PanelLibro extends JPanel{
         OyenteActualizar actualizar=new OyenteActualizar();
         btnActualizar.addActionListener(actualizar);
         llenarTabla();
+        llenarComboFactura();
+        llenarComboEditorial();
+        llenarComboEstado();
         //mostrarDistribuidor();
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt){
@@ -132,6 +145,16 @@ public class PanelLibro extends JPanel{
            libro.setNumPaginas(txtPaginas.getText());
            libro.setPrecio(txtPrecio.getText());
            libro.setAño(txtAño.getText());
+           
+           CmbEditorial CmbEditorial=(CmbEditorial)cmbEditorial.getSelectedItem();
+           libro.setIdEditorial(CmbEditorial.getIdEditorial());
+           
+           CmbFactura CmbFactura=(CmbFactura)cmbFactura.getSelectedItem();
+           libro.setIdFactura(CmbFactura.getIdFactura());
+           
+           CmbEstado CmbEstado=(CmbEstado)cmbEstado.getSelectedItem();
+           libro.setIdEstado(CmbEstado.getIdEstado());
+           
            libro.guardar();
            limpiar();
            llenarTabla();
@@ -158,6 +181,16 @@ public class PanelLibro extends JPanel{
            libro.setNumPaginas(txtPaginas.getText());
            libro.setPrecio(txtPrecio.getText());
            libro.setAño(txtAño.getText());
+           
+           CmbEditorial CmbEditorial=(CmbEditorial)cmbEditorial.getSelectedItem();
+           libro.setIdEditorial(CmbEditorial.getIdEditorial());
+           
+           CmbFactura CmbFactura=(CmbFactura)cmbFactura.getSelectedItem();
+           libro.setIdFactura(CmbFactura.getIdFactura());
+           
+           CmbEstado CmbEstado=(CmbEstado)cmbEstado.getSelectedItem();
+           libro.setIdEstado(CmbEstado.getIdEstado());
+           
            libro.actualizar();
            limpiar();
            llenarTabla();
@@ -165,19 +198,20 @@ public class PanelLibro extends JPanel{
     }
     public void llenarTabla(){
         modelo.setNumRows(0);
-        Object[] elementos=new Object[9];
+        Object[] elementos=new Object[10];
         libro.show();
         try{
             while(libro.getShow().next()){
-                elementos[0]=libro.getShow().getString("id_factura");
-                elementos[1]=libro.getShow().getString("folio_factura");
-                elementos[2]=libro.getShow().getString("precio_neto");
-                elementos[3]=libro.getShow().getString("precio_iva");
-                elementos[4]=libro.getShow().getString("costo_iva");
-                elementos[5]=libro.getShow().getString("fecha_compra");
-                elementos[6]=libro.getShow().getString("hora_compra");
-                elementos[7]=libro.getShow().getString("metodo_pago");
-                elementos[8]=libro.getShow().getString("nombre_empresa");                
+                elementos[0]=libro.getShow().getString("id_libro");
+                elementos[1]=libro.getShow().getString("numero_serie");
+                elementos[2]=libro.getShow().getString("isbn");
+                elementos[3]=libro.getShow().getString("titulo");
+                elementos[4]=libro.getShow().getString("numero_paginas");
+                elementos[5]=libro.getShow().getString("precio");
+                elementos[6]=libro.getShow().getString("año_publicacion");
+                elementos[7]=libro.getShow().getString("nombre_editorial");
+                elementos[8]=libro.getShow().getString("folio_factura");
+                elementos[9]=libro.getShow().getString("estado");                
                 modelo.addRow(elementos);
             }
         }
@@ -193,5 +227,42 @@ public class PanelLibro extends JPanel{
         txtPaginas.setText("");
         txtPrecio.setText(""); 
         txtAño.setText(""); 
+    }
+    
+    public void llenarComboFactura(){
+        try{
+         factura.showFactura();
+         cmbFactura.setModel(modFactura);
+         while(factura.getShowFactura().next()){
+            modFactura.addElement(new CmbFactura(factura.getShowFactura().getString("folio_factura"),factura.getShowFactura().getString("id_factura")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error"+ex);
+        }
+    }
+    public void llenarComboEditorial(){
+        try{
+         editorial.showEditorial();
+         cmbEditorial.setModel(modEditorial);
+         while(editorial.getShowEditorial().next()){
+            modEditorial.addElement(new CmbEditorial(editorial.getShowEditorial().getString("nombre_editorial"),editorial.getShowEditorial().getString("id_editorial")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error"+ex);
+        }
+    }
+    public void llenarComboEstado(){
+        try{
+         estado.showEstado();
+         cmbEstado.setModel(modEstado);
+         while(estado.getShowEstado().next()){
+            modEstado.addElement(new CmbEstado(estado.getShowEstado().getString("estado"),estado.getShowEstado().getString("id_estado")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error"+ex);
+        }
     }
 }
