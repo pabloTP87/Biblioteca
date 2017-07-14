@@ -41,7 +41,9 @@ public class PanelLibro extends JPanel{
     
     JComboBox cmbEditorial=new JComboBox();
     JComboBox cmbFactura=new JComboBox();
-    JComboBox cmbEstado=new JComboBox();
+    
+    String estados[]={"Disponible","Arrendado","Vendido","Mal estado"};
+    JComboBox cmbEstado=new JComboBox(estados);
     
     JButton btnLimpiar=new JButton("Limpiar");
     JButton btnGuardar=new JButton("Guardar");
