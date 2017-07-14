@@ -2,6 +2,7 @@
 package vista;
 
 import Combo.CmbCliente;
+import Combo.CmbLibro;
 import Combo.CmbTrabajador;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import negocio.Arriendo;
 import negocio.Cliente;
+import negocio.Libro;
 import negocio.Trabajador;
 
 public class PanelArriendo extends JPanel{
@@ -63,23 +65,24 @@ public class PanelArriendo extends JPanel{
     JButton btnActualizar=new JButton("Actualizar");
     
     Arriendo arriendo=new Arriendo();
+    Libro libro=new Libro();
     Cliente cliente=new Cliente();
     Trabajador trabajador=new Trabajador();
 
     DefaultTableModel modelo=new DefaultTableModel();
         {
             modelo.addColumn("Id");
-            modelo.addColumn("Folio");
-            modelo.addColumn("Precio Neto");
-            modelo.addColumn("Precio con IVA");
-            modelo.addColumn("IVA 19%");
-            modelo.addColumn("Fecha de venta");
-            modelo.addColumn("Hora de venta");
-            modelo.addColumn("Nombre Cliente");
-            modelo.addColumn("Apellido");
-            modelo.addColumn("Nombre Vendedor");
-            modelo.addColumn("Apelido");
-            modelo.addColumn("Metodo de pago");                      
+            modelo.addColumn("Titulo");
+            modelo.addColumn("Costo Total");
+            modelo.addColumn("Fecha de arriendo");
+            modelo.addColumn("Fecha de devolucion");
+            modelo.addColumn("Fecha de entrega");
+            modelo.addColumn("Dias de atraso");
+            modelo.addColumn("Multa");
+            modelo.addColumn("Costo de arriendo");
+            modelo.addColumn("Rut cliente");
+            modelo.addColumn("Rut Trabajador");
+                                 
         }
     JTable tabla=new JTable(modelo);
     JScrollPane scroll=new JScrollPane(tabla);
@@ -122,6 +125,7 @@ public class PanelArriendo extends JPanel{
         OyenteActualizar actualizar=new OyenteActualizar();
         btnActualizar.addActionListener(actualizar);
         llenarTabla();
+        llenarComboLibro();
         llenarComboCliente();
         llenarComboTrabajador();
         
@@ -157,6 +161,9 @@ public class PanelArriendo extends JPanel{
            arriendo.setMulta(txtMulta.getText());
            arriendo.setCosto_arriendo(txtCosto.getText());
            
+           CmbLibro CmbLibro=(CmbLibro)cmbLibro.getSelectedItem();
+           arriendo.setId_libro(CmbLibro.getIdLibro());
+           
            CmbCliente CmbCliente=(CmbCliente)cmbCliente.getSelectedItem();
            arriendo.setId_cliente(CmbCliente.getIdCliente());
            
@@ -190,6 +197,9 @@ public class PanelArriendo extends JPanel{
            arriendo.setMulta(txtMulta.getText());
            arriendo.setCosto_arriendo(txtCosto.getText());
            
+           CmbLibro CmbLibro=(CmbLibro)cmbLibro.getSelectedItem();
+           arriendo.setId_libro(CmbLibro.getIdLibro());
+           
            CmbCliente CmbCliente=(CmbCliente)cmbCliente.getSelectedItem();
            arriendo.setId_cliente(CmbCliente.getIdCliente());
            
@@ -202,22 +212,22 @@ public class PanelArriendo extends JPanel{
     }
     public void llenarTabla(){
         modelo.setNumRows(0);
-        Object[] elementos=new Object[12];
+        Object[] elementos=new Object[11];
         arriendo.show();
         try{
             while(arriendo.getShow().next()){
-                elementos[0]=arriendo.getShow().getString("id_boleta");
-                elementos[1]=arriendo.getShow().getString("folio_boleta");
-                elementos[2]=arriendo.getShow().getString("precio_neto");
-                elementos[3]=arriendo.getShow().getString("precio_iva");
-                elementos[4]=arriendo.getShow().getString("costo_iva");
-                elementos[5]=arriendo.getShow().getString("fecha_venta");
-                elementos[6]=arriendo.getShow().getString("hora_venta");
-                elementos[7]=arriendo.getShow().getString("nombre_cliente");
-                elementos[8]=arriendo.getShow().getString("apepat_cliente");
-                elementos[9]=arriendo.getShow().getString("nombre_trabajador");
-                elementos[10]=arriendo.getShow().getString("apepat_trabajador");
-                elementos[11]=arriendo.getShow().getString("metodo_pago");              
+                elementos[0]=arriendo.getShow().getString("id_Arriendo");
+                elementos[1]=arriendo.getShow().getString("titulo");
+                elementos[2]=arriendo.getShow().getString("costo_total");
+                elementos[3]=arriendo.getShow().getString("fecha_arriendo");
+                elementos[4]=arriendo.getShow().getString("fecha_devolucion");
+                elementos[5]=arriendo.getShow().getString("fecha_entrega");
+                elementos[6]=arriendo.getShow().getString("dias_atraso");
+                elementos[7]=arriendo.getShow().getString("multa");
+                elementos[8]=arriendo.getShow().getString("costo_arriendo");
+                elementos[9]=arriendo.getShow().getString("rut");
+                elementos[10]=arriendo.getShow().getString("rut_trabajador");
+                             
                 modelo.addRow(elementos);
             }
         }
@@ -235,6 +245,18 @@ public class PanelArriendo extends JPanel{
         txtMulta.setText("");
         txtCosto.setText(""); 
     }
+    public void llenarComboLibro(){
+        try{
+         libro.showLibro();
+         cmbLibro.setModel(valueLibro);
+         while(libro.getShowLibro().next()){
+            valueLibro.addElement(new CmbLibro(libro.getShowLibro().getString("titulo"),libro.getShowLibro().getString("id_libro")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error"+ex);
+        }
+    }
     public void llenarComboCliente(){
        try{
           cliente.showCliente();
@@ -244,7 +266,7 @@ public class PanelArriendo extends JPanel{
           }
         }
        catch(SQLException ex){
-           System.out.println("error al llenar combo");
+           System.out.println("Error"+ex);
         }
     }
     public void llenarComboTrabajador(){
@@ -256,7 +278,7 @@ public class PanelArriendo extends JPanel{
           }
         }
        catch(SQLException ex){
-           System.out.println("error al llenar combo");
+           System.out.println("Error"+ex);
         }
     }
 }

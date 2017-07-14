@@ -120,7 +120,7 @@ public class Arriendo {
         con.setExecuteUpdate("update arriendos set id_libro='"+this.getId_libro()+"',costo_total='"+this.getCosto_total()+"',fecha_arriendo='"+this.getFecha_arriendo()+"',fecha_devolucion='"+this.getFecha_devolucion()+"',fecha_entrega='"+this.getFecha_entrega()+"',dias_atraso='"+this.getDias_atraso()+"',multa='"+this.getMulta()+"',costo_arriendo='"+this.getCosto_arriendo()+"',id_cliente='"+this.getId_cliente()+"',id_trabajador='"+this.getId_trabajador()+"' where id_arriendo='"+this.getId_arriendo()+"'");
     }
     public void show(){
-        con.setExecuteQuery("select * from arriendos");
+        con.setExecuteQuery("select * from arriendos,libros,clientes,trabajadores WHERE arriendos.id_libro=libros.id_libro and arriendos.id_cliente=clientes.id_cliente and arriendos.id_trabajador=trabajadores.id_trabajador");
     }
     public ResultSet getShow(){
         return con.getRs();
