@@ -10,6 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -143,9 +144,14 @@ public class PanelFactura extends JPanel{
     }
     class OyenteEliminar implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            factura.eliminar();
-            limpiar();
-            llenarTabla();
+            try{
+                factura.eliminar();
+                limpiar();
+                llenarTabla();
+            }
+            catch(Exception ex){
+                JOptionPane.showInputDialog("error"+ex);
+            }
         }        
     }
     class OyenteLimpiar implements ActionListener{
